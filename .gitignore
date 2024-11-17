@@ -1,0 +1,18 @@
+# VSCode関連ファイル
+.vscode/
+
+# 環境変数ファイル
+.envrc
+
+# OS固有ファイル
+.DS_Store
+
+# ビルド成果物（Goの場合）
+/bin/
+/pkg/
+/*.exe
+/*.out
+
+# キャッシュファイル
+*.log
+*.tmp.vscode/
