@@ -1,1 +1,1 @@
-# gointerpreter
+# Go言語でつくるインタプリタ学習用
