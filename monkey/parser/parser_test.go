@@ -1,7 +1,8 @@
 package parser
 
-import(
+import (
 	"testing"
+
 	"github.com/taichi-kobaya/go-monkey-interpreter/monkey/ast"
 	"github.com/taichi-kobaya/go-monkey-interpreter/monkey/lexer"
 )
@@ -34,7 +35,7 @@ let foobar = 838383;
 
 	for i, tt := range tests {
 		stmt := program.Statements[i]
-		if !testLetStatements(t, stmt, tt.expectedIdentifier) {
+		if !testLetStatement(t, stmt, tt.expectedIdentifier) {
 			return
 		}
 	}
@@ -46,7 +47,7 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
 		return false
 	}
 
-	letStmt, ok := s.(*ast.LetStatement. got=%T, s)
+	letStmt, ok := s.(*ast.LetStatement)
 	if !ok {
 		t.Errorf("s not *ast.LetStatement. got=%T", s)
 	}
@@ -58,6 +59,9 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
 
 	if letStmt.Name.TokenLiteral() != name {
 		t.Errorf("letStmt.name.TokenLiteral() not '%s', got=%s",
-		name, letStmt.Name.TokenLiteral())
+			name, letStmt.Name.TokenLiteral())
+		return false
 	}
+
+	return true
 }
