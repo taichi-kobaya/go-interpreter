@@ -150,7 +150,7 @@ func TestParsingPrefixExpressions(t *testing.T) {
 }
 
 func TestParsingInfixExpressions(t *testing.T) {
-	prefixTests := []struct {
+	infixTests := []struct {
 		input      string
 		leftValue  int64
 		operator   string
