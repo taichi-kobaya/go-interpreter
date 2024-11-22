@@ -21,7 +21,7 @@ func TestNextToken(t *testing.T) {
 	if (5 < 10) {
 		return true;
 	} else {
-	 	return false;
+		return false;
 	}
 		
 	10 == 10;
