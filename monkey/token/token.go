@@ -11,9 +11,10 @@ const (
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
 
-	// 識別子　+　リテラル
-	IDENT = "IDENT" // add, foobar, x, y, ...
-	INT   = "INT"   // 1343456
+	// 識別子 + リテラル
+	IDENT  = "IDENT" // add, foobar, x, y, ...
+	INT    = "INT"   // 1343456
+	STRING = "STRING"
 
 	// 演算子
 	ASSIGN   = "="
