@@ -74,7 +74,7 @@ func Eval(node ast.Node, env *object.Enviroment) object.Object {
 	case *ast.FunctionLiteral:
 		params := node.Parameters
 		body := node.Body
-		return &object.Function{Parameters: params, Body: body}
+		return &object.Function{Parameters: params, Body: body, Env: env}
 
 	case *ast.CallExpression:
 		function := Eval(node.Function, env)
