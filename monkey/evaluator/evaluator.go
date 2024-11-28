@@ -13,7 +13,7 @@ var (
 	FALSE = &object.Boolean{Value: false}
 )
 
-func Eval(node ast.Node, env *object.Enviroment) object.Object {
+func Eval(node ast.Node, env *object.Environment) object.Object {
 	switch node := node.(type) {
 
 	// 文
@@ -118,7 +118,7 @@ func Eval(node ast.Node, env *object.Enviroment) object.Object {
 	return nil
 }
 
-func evalProgram(program *ast.Program, env *object.Enviroment) object.Object {
+func evalProgram(program *ast.Program, env *object.Environment) object.Object {
 	var result object.Object
 
 	for _, statement := range program.Statements {
@@ -135,7 +135,7 @@ func evalProgram(program *ast.Program, env *object.Enviroment) object.Object {
 	return result
 }
 
-func evalBlockStatements(block *ast.BlockStatement, env *object.Enviroment) object.Object {
+func evalBlockStatements(block *ast.BlockStatement, env *object.Environment) object.Object {
 	var result object.Object
 
 	for _, statement := range block.Statements {
@@ -258,7 +258,7 @@ func evalStringInfixExpression(
 	return &object.String{Value: leftval + rightval}
 }
 
-func evalIfExpression(ie *ast.IfExpression, env *object.Enviroment) object.Object {
+func evalIfExpression(ie *ast.IfExpression, env *object.Environment) object.Object {
 	condition := Eval(ie.Condition, env)
 	if isError(condition) {
 		return condition
@@ -275,7 +275,7 @@ func evalIfExpression(ie *ast.IfExpression, env *object.Enviroment) object.Objec
 
 func evalIdentifier(
 	node *ast.Identifier,
-	env *object.Enviroment,
+	env *object.Environment,
 ) object.Object {
 	if val, ok := env.Get(node.Value); ok {
 		return val
@@ -314,7 +314,7 @@ func isError(obj object.Object) bool {
 
 func evalExpressions(
 	exps []ast.Expression,
-	env *object.Enviroment,
+	env *object.Environment,
 ) []object.Object {
 	var result []object.Object
 
@@ -348,8 +348,8 @@ func applyFunction(fn object.Object, args []object.Object) object.Object {
 func extendFunctionEnv(
 	fn *object.Function,
 	args []object.Object,
-) *object.Enviroment {
-	env := object.NewEnclosedEnviroment(fn.Env)
+) *object.Environment {
+	env := object.NewEnclosedEnvironment(fn.Env)
 
 	for paramIdx, param := range fn.Parameters {
 		env.Set(param.Value, args[paramIdx])
@@ -391,7 +391,7 @@ func evalArrayIndexExpression(array, index object.Object) object.Object {
 
 func evalHashLiteral(
 	node *ast.HashLiteral,
-	env *object.Enviroment,
+	env *object.Environment,
 ) object.Object {
 	pairs := make(map[object.HashKey]object.HashPair)
 
